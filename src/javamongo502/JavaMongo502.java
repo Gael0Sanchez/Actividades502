@@ -7,13 +7,13 @@ public class JavaMongo502 {
         Connection conexion = new Connection();
         
         conexion.Mostrar();
-        //conexion.insertar("Nadar");
-        System.out.println("Otro");
-        //conexion.Mostrar();
-        System.out.println("Otro mas");
-        //conexion.Actualizar("Nadar", "Brincar");
-        conexion.Eliminar("Brincar");
-        conexion.Mostrar();
+        conexion.insertar("Real Samesta");
+//        System.out.println("Otro");
+//        //conexion.Mostrar();
+//        System.out.println("Otro mas");
+//        //conexion.Actualizar("Nombre", "Zorros");
+//        conexion.Eliminar("Zorros");
+//        conexion.Mostrar();
         
         
     }

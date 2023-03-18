@@ -1,14 +1,10 @@
 
 package javamongo502;
 
-import com.mongodb.DBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.Mongo;
-import java.net.UnknownHostException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import com.mongodb.BasicDBObject;
 
 public class Connection {
@@ -18,27 +14,15 @@ public class Connection {
     BasicDBObject document = new BasicDBObject ();
 
     public Connection(){
-        Mongo mongo = new Mongo("localhost",27017);
-        BaseDatos =mongo.getDB("Actividades502");
-        coleccion =BaseDatos.getCollection("Actividades502");
+        Mongo mongo = new Mongo("mongodb+srv://migaelsa2q34@gmail.com:1234@cluster0.n7zvl9r.mongodb.net/?retryWrites=true&w=majority");
+        BaseDatos =mongo.getDB("GaelDSM502");
+        coleccion =BaseDatos.getCollection("Equipos");
         System.out.println("Conexion exitosa");
         
     }
     
-//    public Connection(){
-//        try{
-//            Mongo mongo = new Mongo("localhost",27017);
-//            BaseDatos =mongo.getDB("Actividades502");
-//            coleccion =BaseDatos.getCollection("Actividades502");
-//            System.out.println("Conexion exitosa");
-//        }catch(UnknownHostException ex){
-//            Logger.getLogger(Connection.class.getName()).log(Level.SEVERE,null,ex);
-//        }
-//        
-//    }
-    
-    public boolean insertar(String accion){
-        document.put("accion",accion);
+    public boolean insertar(String nombre){
+        document.put("Nombre",nombre);
         coleccion.insert(document);
         return true;
     }
@@ -49,17 +33,17 @@ public class Connection {
         }
     }
     
-    public boolean Actualizar(String accionVieja, String accionNueva){
+    public boolean Actualizar(String nombreViejo, String nombreNuevo){
         
-        document.put("accion", accionVieja);
+        document.put("Nombre", nombreViejo);
         BasicDBObject documentoNuevo = new BasicDBObject();
-        documentoNuevo.put("accion", accionNueva);
+        documentoNuevo.put("Nombre", nombreNuevo);
         coleccion.findAndModify(document, documentoNuevo);
         return true;
     }
     
-    public boolean Eliminar(String accion){
-        document.put("accion", accion);
+    public boolean Eliminar(String nombre){
+        document.put("Nombre", nombre);
         coleccion.remove(document);
         return true;
     }
